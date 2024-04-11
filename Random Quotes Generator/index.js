@@ -59,10 +59,23 @@ const randomQuote=document.getElementById("quote")
 
 
 function getQuote(){
-    randomIdx=Math.floor(Math.random()*quotes.length);
 
-    const randQuote=quotes[randomIdx];
+    if(usedState.size >=quotes){
+        usedState.clear()
+    }
 
-    randomQuote.innerText=randQuote;
+    while(true){
+        randomIdx=Math.floor(Math.random()*quotes.length);
+
+        if(usedState.has(randomIdx)) continue;
+
+        const randQuote=quotes[randomIdx];
+    
+        randomQuote.innerText=randQuote;
+        usedState.add(randomIdx);
+        break;
+
+    }
+   
    
 }
